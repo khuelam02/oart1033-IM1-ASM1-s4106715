@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Atelophobia The Poem.</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
+  <script src="script.js"></script>
+</head>
+<body>
+    
+<main>
+
+
+
+<!------------------------------------------------------------------------>
+<!----------------------------- OPENING VIDEO--------------------------- -->
+<!------------------------------------------------------------------------>
+<section class="opening" id="opening">
+<video id="openingVideo" preload="auto" playsinline >
+  <source src="./video/opening.mp4" type="video/mp4"> 
+</video>
+<audio id="typeSound" src="./sounds/type.mp3" pause preload="auto"></audio>
+
+ <div class="overlay" id="overlay">
+    <p class="start-text" id="startBtn">Click to let her in.</p>
+  </div>
+
+
+
+
+</section> 
+<!------------------------------------------------------------------------>
+<!------------------------------LANDING PAGE----------------------------->
+<!------------------------------------------------------------------------>
+  <section class="landing" id="landing">
+     <img src="./album/landing title.png" class="title">
+     <img src="./album/TITLE LANDING WEBPAGE.png" class="typo">
+     <p class="caption">based on <span class="highlight">"Black Swan"</span> movie.</p>
+    <div> <!--hình ballerina-->
+    <img src="./album/ballerina cover page.png" id="ballerina" />
+    <img src="./album/blur.png" id="blur">
+    </div>
+    
+</div>
+  </section>
+
+
+  <!-- MUSIC -->
+<audio id="music" loop playsinline preload="auto">
+  <source src="./audio/YTDown.com_YouTube_Lana-Del-Rey-Salvatore-Piano-Cover_Media_mpTI1M3Fm9o_001_1080p.mp3" type="audio/mpeg">
+</audio>
+<!--JSCODE-->
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("startBtn");
+  const overlay = document.getElementById("overlay");
+  const landing = document.getElementById("landing");
+  const opening = document.getElementById("opening");
+  const openingVideo = document.getElementById("openingVideo");
+  const music = document.getElementById("music");
+
+  if (!btn || !overlay || !landing || !opening || !openingVideo) return;
+
+  openingVideo.pause();
+  openingVideo.currentTime = 0;
+
+  btn.addEventListener("click", () => {
+    overlay.classList.add("hide");
+
+    if (music) {
+      music.play().catch(() => {});
+    }
+
+    openingVideo.play().catch((error) => {
+      console.log("Video play failed:", error);
+    });
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+    }, 500);
+  });
+
+  openingVideo.addEventListener("ended", () => {
+    landing.classList.add("active");
+    document.body.style.overflow = "auto";
+
+    setTimeout(() => {
+      opening.style.display = "none";
+    }, 50);
+  });
+});
+
+</script>
+  
+ <!------------------------------------------------------------------------>
+<!------------------------------------------------------------------------>
+<!------------------------------------------------------------------------>
+<!------------------------------------------------------------------------>
+
+
+
+
+
+
+<!--SCENE 1-->
+<section id="scene1" class="scene">
+  <img id="ballerina-s1" src="./album/scene 1.png" alt="ballerina">
+  <div class="autoblur" id="l1">Since <span class="white-text">childhood</span> halls of mirrored light,</div>
+  <div class="autoblur" id="l2">She trained beneath a <span class="white-text">silent</span> gaze,</div>
+  <div class="autoblur" id="l3">A <span class="white-text">fragile swan</span> in feathers white,</div>
+  <div class="autoblur" id="l4">Raised gently in a <span class="white-text">cage</span> of praise.</div>
+  </div>
+</section>
+
+
+
+<!--BLUR LANDING KHI SCROLL DOWN-->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const landing = document.getElementById("landing");
+  const scene1 = document.getElementById("scene1");
+
+  if (!landing || !scene1) return;
+
+  window.addEventListener("scroll", () => {
+    const sceneTop = scene1.offsetTop;
+    const scrollY = window.scrollY;
+    const windowH = window.innerHeight;
+
+    const startFade = sceneTop - windowH;
+    const endFade = sceneTop;
+
+    let progress = (scrollY - startFade) / (endFade - startFade);
+    progress = Math.max(0, Math.min(progress, 1));
+
+    landing.style.opacity = 1 - progress * 2;
+    landing.style.filter = `blur(${progress * 16}px) brightness(${1 - progress * 0.25})`;
+    landing.style.transform = `translateY(-${progress * 40}px)`;
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const scene1 = document.getElementById("scene1");
+  const scene2 = document.getElementById("scene2");
+
+  const scene1Img = document.getElementById("ballerina-s1");
+  const scene1Text = scene1.querySelectorAll(".autoblur");
+
+  const scene2Img = document.getElementById("scene-2-img");
+  const scene2Feather = document.getElementById("feather-img");
+  const scene2Text = scene2.querySelectorAll(".text-style-2");
+
+  if (!scene1 || !scene2 || !scene1Img || !scene2Img) return;
+
+  scene2.style.opacity = 1;
+
+  window.addEventListener("scroll", () => {
+    const scene2Top = scene2.offsetTop;
+    const scrollY = window.scrollY;
+    const windowH = window.innerHeight;
+
+    const startFade = scene2Top - windowH;
+    const endFade = scene2Top;
+
+    let progress = (scrollY - startFade) / (endFade - startFade);
+    progress = Math.max(0, Math.min(progress, 1));
+
+    /* scene 1 */
+    scene1Img.style.opacity = 1 - progress;
+    scene1Img.style.filter = `blur(${progress * 10}px) brightness(${1 - progress * 0.3})`;
+    scene1Img.style.transform = `translateX(-50%) translateY(-${progress * 40}px)`;
+
+    scene1Text.forEach((el) => {
+      el.style.opacity = 1 - progress;
+      el.style.filter = `blur(${progress * 4}px)`;
+    });
+
+    /* scene 2 */
+    scene2Img.style.opacity = progress;
+    scene2Img.style.filter = `blur(${(1 - progress) * 10}px)`;
+
+    if (scene2Feather) {
+      scene2Feather.style.opacity = progress;
+      scene2Feather.style.filter = `blur(${(1 - progress) * 4}px)`;
+    }
+
+    scene2Text.forEach((el) => {
+      el.style.opacity = progress;
+      el.style.filter = `blur(${(1 - progress) * 4}px)`;
+    });
+  });
+});
+</script>
+ 
+<!--SCENE 2-->
+<section id="scene2" class="scene">
+  <div id="scene-2-img"></div>
+  <div id="feather-img"></div>
+
+  <div class="stanza-2">
+    <p class="text-style-2" id="l1-2">Each dawn began on <span class="white-text">splintered floor</span></p>
+    <p class="text-style-2" id="l2-2">Her <span class="white-text">bleeding</span> toes in silent strain. </p>
+    <p class="text-style-2" id="l3-2">She chased  <span class="white-text">perfection</span> evermore</p>
+    <p class="text-style-2" id="l4-2">Through discipline, through <span class="white-text">hidden pain.</span></p>
+  </div>
+</section>
+
+
+<!--SCENE 3-->
+<section id="scene3" class="scene">
+  <img id="scene-3-img" src="album/scene-3.png">
+  <div id="small-lily" class="lily"></div>
+  <div id="big-lily" class="lily"></div>
+
+
+  <div class="stanza-3">
+    <p class="text-style-3" id="l1-3">But art demands <span class="white-text">a darker wing,</span></p>
+    <p class="text-style-3"id="l2-3"> A fire  the <span class="white-text">beneath</span> a quiet skin. </p>
+   
+  </div>
+</section>
+
+
+
+
+
+
+<!--SCENE 4-->
+
+<section id="scene4" class="scene">
+  <div id="s4-img"></div>
+<div class="glitch-img-wrap">
+  <img src="./album/reflect.png" alt="reflect" class="img base">
+
+</div>
+  <div class="stanza-4">
+    <p class="text-style-4" id="l1-4">The <span class="white-text">"Black Swan"</span> lives in everything,</p>
+     <p class="text-style-4" id="l2-4">You only need to <span class="white-text">"let her in"</span></p>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<!--SCENE 5-->
+<section class="scene5">
+
+  <div class="stanza-5">
+    <p class="text-style-5" id="l1-5"> <span class="white-text">From the mirrors</span> whispered in the night,</p>
+    <p class="text-style-5" id="l2-5"> <span class="white-text"> A shadow</span> stirred from somewhere deep inside. </p>
+    <p class="text-style-5" id="l3-5"> <span class="white-text">Desire awoke, </span> a sudden burning light,</p>
+    <p class="text-style-5" id="l4-5"> <span class="white-text">Another self.</span> began to rise. </p>
+  </div>
+
+  <video id="s5" muted playsinline preload="metadata">
+    <source src="./video/portrait_3.mp4" type="video/mp4">
+  </video>
+</section> 
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const scene = document.querySelector(".scene5");
+  const video = document.getElementById("s5");
+
+  if (!scene || !video) return;
+
+  let targetTime = 0;
+  let smoothTime = 0;
+
+  video.pause();
+  video.currentTime = 0;
+
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function updateVideoByScroll() {
+    if (!video.duration) return;
+
+    const rect = scene.getBoundingClientRect();
+    const vh = window.innerHeight;
+
+    let raw = (vh - rect.top) / (vh + rect.height);
+    raw = clamp(raw, 0, 1);
+
+    let progress = (raw - 0.58) / 0.42;
+    progress = clamp(progress, 0, 1);
+
+    targetTime = progress * video.duration;
+  }
+
+  function animate() {
+    smoothTime += (targetTime - smoothTime) * 0.05;
+
+    if (Math.abs(video.currentTime - smoothTime) > 0.01) {
+      video.currentTime = smoothTime;
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  video.addEventListener("loadedmetadata", () => {
+    video.currentTime = 0;
+    smoothTime = 0;
+    targetTime = 0;
+    updateVideoByScroll();
+    animate();
+  });
+
+  window.addEventListener("scroll", updateVideoByScroll, { passive: true });
+  window.addEventListener("resize", updateVideoByScroll);
+});
+</script>
+
+<!--SCENE 6-->
+<section id="scene6" class="scene">
+
+    <div class="text-s6">
+        <div class="cursor-s6"></div>
+    <p>
+      Through nights of <span class="text-font">bars</span> and <span class="text-font">burning wine</span>
+   </p>
+      <p>
+      Through <span class="text-font">wandering hands</span> in winding maze. 
+        <p>
+     She crossed the  <span class="text-font">borders</span> once confined.
+       <p>
+     To find herself in wind, <span class="text-font">lost haze.</span>
+  </div>
+
+  <div class="video-s6">
+
+    <video class="v1" autoplay muted loop playsinline>
+      <source src="./video/s6.mp4" type="video/mp4">
+    </video>
+
+       <video class="vid v2" autoplay muted loop playsinline>
+      <source src="./video/s6.mp4" type="video/mp4">
+    </video>
+
+    <video class="vid v3" autoplay muted loop playsinline>
+      <source src="./video/s6.mp4" type="video/mp4">
+    </video>
+ 
+  </div>
+
+
+</section>
+
+
+<!--SCENE 7-->
+<section id="scene7" class="scene">
+  <div id="bg-s7"></div>
+  <div class="element-s7">
+    <img id="moon" src="./album/moon.png">
+     <img id="blackswan" src="./album/blackswan-s7.png">
+  </div>
+    <div class="stanza-7">
+    <p class="text-style-7" id="l1-7"> <span class="white-text">The opening night</span> unveils in silience,</p>
+    <p class="text-style-7" id="l2-7"> As the White Swan <span class="white-text"> dissolves </span> in the light. </p>
+    <p class="text-style-7" id="l3-7"> The Black Swan <span class="white-text"> spreads its wings </span> in radience</p>
+    <p class="text-style-7" id="l4-7"> To <span class="white-text">burn with perfection </span> through the night </p>
+  </div>
+  
+</section>
+
+
+<!--SCENE 8-->
+<section id="scene8" class="scene">
+  <div class="element-s8">
+      <div id="water"></div>
+    <img id="falling" src="./album/falling-s8.png">
+<!---text-->
+ <div class="stanza-8">
+    <p class="text-style-8" id="l1-8"> The audience <span class="white-text">breaks into thunder</span></p>
+    <p class="text-style-8" id="l2-8"> Yet <span class="white-text"> crimson </span> stains her fragile gown. </p>
+    <p class="text-style-8" id="l3-8"> She smiles beneath <span class="white-text"> the blinding lights, </span></p>
+    <p class="text-style-8" id="l4-8"> While something in her  <span class="white-text">settles down</span></p>
+  </div>
+
+  </div>
+<div>
+  <p class="end">The End.</p>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const scene8 = document.getElementById("scene8");
+  const falling = document.getElementById("falling");
+
+  if (!scene8 || !falling) return;
+
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function animateFalling() {
+    const rect = scene8.getBoundingClientRect();
+    const sceneHeight = scene8.offsetHeight;
+    const windowH = window.innerHeight;
+
+    // progress của scene8 trong viewport
+    let progress = (windowH - rect.top) / (sceneHeight *1.4 + windowH);
+    progress = clamp(progress, 0, 1);
+
+    // nhân vật bắt đầu hiện/chạy từ đầu scene
+    const moveY = progress * 900;      // độ rơi xuống
+    const driftX = Math.sin(progress * Math.PI * 1.8) * 30; // lắc nhẹ ngang
+
+   
+    let opacity = 1;
+    if (progress > 0.72) {
+      opacity = 1 - ((progress - 0.72) / 0.28);
+      opacity = clamp(opacity, 0, 1);
+    }
+
+  
+    let blur = 0;
+    if (progress > 0.72) {
+      blur = ((progress - 0.72) / 0.28) * 10;
+    }
+
+
+    const scale = 1 - progress * 0.12;
+
+    falling.style.transform = `translate(calc(-50% + ${driftX}px), ${moveY}px) scale(${scale})`;
+    falling.style.opacity = opacity;
+    falling.style.filter = `blur(${blur}px)`;
+  }
+
+  window.addEventListener("scroll", animateFalling, { passive: true });
+  window.addEventListener("resize", animateFalling);
+  animateFalling();
+});
+</script>
+  
+</section>
+
+
+
+ 
+
